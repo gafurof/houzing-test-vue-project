@@ -16,7 +16,7 @@ import { reactive, computed } from 'vue';
 import { useDisplay } from 'vuetify'
 
 const { mdAndUp } = useDisplay()
-const cardWidth = computed(() => (mdAndUp.value ? 380 : 343))
+const cardWidth = computed(() => (mdAndUp.value ? 380 : 280))
 const cardHeight = computed(() => (mdAndUp.value ? 197 : 197))
 
 const testimonials = reactive([

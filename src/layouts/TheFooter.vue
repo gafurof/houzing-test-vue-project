@@ -43,13 +43,10 @@
     <v-divider thickness="1" width="100%"></v-divider>
 
     <v-container>
-      <v-row class="d-flex w-100 justify-space-between align-center">
-        <v-col cols="12" sm="6">
-          <img src="@/assets/navLogo.png" alt="Housing" height="40">
-        </v-col>
-        <v-col cols="12" sm="6" class="text-sm-end">
-          &copy; {{ new Date().getFullYear() }}
-        </v-col>
+      <v-row class="pt-2 d-flex w-100 justify-space-between align-center">
+        <img src="@/assets/navLogo.png" alt="Housing" height="40">
+
+        &copy; {{ new Date().getFullYear() }}
       </v-row>
     </v-container>
   </v-footer>
