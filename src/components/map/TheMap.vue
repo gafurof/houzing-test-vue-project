@@ -41,8 +41,17 @@ onMounted(() => {
 
   const map = L.map(mapContainer.value).setView([lat, lng], 13)
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    maxZoom: 20
+  }).addTo(map)
+
+  L.circleMarker([lat, lng], {
+    radius: 8,
+    fillColor: '#ff5722',
+    color: '#ff5722',
+    weight: 1,
+    fillOpacity: 0.9
   }).addTo(map)
 
   L.marker([lat, lng]).addTo(map)
