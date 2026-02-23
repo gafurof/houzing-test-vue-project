@@ -46,6 +46,13 @@ onMounted(() => {
     maxZoom: 20
   }).addTo(map)
 
-  L.marker([lat, lng]).addTo(map)
+  L.marker([lat, lng], {
+    radius: 8,
+    fillColor: '#ff5722',
+    color: '#ff5722',
+    weight: 1,
+    fillOpacity: 0.9
+  }).addTo(map)
+
 })
 </script>
