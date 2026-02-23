@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main class="overflow-y-auto" >
       <TheNav />
       <router-view></router-view>
       <TheFooter />
@@ -14,9 +14,16 @@ import TheFooter from '@/layouts/TheFooter.vue';
 </script>
 
 <style>
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 0;
+  /* Remove scrollbar space */
   background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 body {
