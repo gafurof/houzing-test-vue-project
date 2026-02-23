@@ -12,16 +12,22 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/main' },
     { path: '/main', component: PageMain },
-    { path: '/properties', component: PageProperties, },
-    { path: '/myproperties', component: PageMyProperties, },
+    { path: '/properties', component: PageProperties },
+    { path: '/myproperties', component: PageMyProperties },
     { path: '/favourites/:id', component: PageFavourites },
     {
       path: '/product/:id',
       name: 'product',
       component: PageProductView
     },
+  ],
 
-  ]
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { top: 0 }
+  }
 })
 
 export default router
