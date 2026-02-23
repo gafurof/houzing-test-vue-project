@@ -9,7 +9,7 @@
         <v-list-item value="profile">
           <v-list-item-title>My Profile</v-list-item-title>
         </v-list-item>
-        <v-list-item value="properties">
+        <v-list-item value="properties" to="/myproperties" link>
           <v-list-item-title>My Properties</v-list-item-title>
         </v-list-item>
         <v-list-item value="favourites" :to="'/favourites/' + 12" link>

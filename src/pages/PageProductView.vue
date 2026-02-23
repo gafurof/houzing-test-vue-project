@@ -176,6 +176,33 @@
             </v-sheet>
           </v-col>
         </v-row>
+        <v-divider v-if="!$vuetify.display.mdAndUp" ></v-divider>
+        <v-row v-if="!$vuetify.display.mdAndUp" no-gutters>
+          <v-col cols="12">
+            <v-sheet class="pa-4 ma-2">
+              <div class="d-flex justify-center">
+                <v-card rounded="0" elevation="0">
+                  <h3>Bilol</h3>
+                  <v-text-field label="User Name" variant="underlined" hide-details class="mb-4" />
+
+                  <v-text-field label="Phone" variant="underlined" hide-details class="mb-4" />
+
+                  <v-text-field label="Email" variant="underlined" hide-details class="mb-4" />
+
+                  <v-textarea label="Message" variant="underlined" rows="3" hide-details class="mb-4" />
+
+                  <v-checkbox color="primary" label="By submitting this form I agree to Terms of Use" class="mb-4"
+                    hide-details />
+
+                  <v-btn color="primary" block size="large" @click="submit">
+                    Send
+                  </v-btn>
+
+                </v-card>
+              </div>
+            </v-sheet>
+          </v-col>
+        </v-row>
       </v-col>
 
       <v-col cols="4" v-if="$vuetify.display.mdAndUp">
@@ -191,7 +218,8 @@
 
               <v-textarea label="Message" variant="underlined" rows="3" hide-details class="mb-4" />
 
-              <v-checkbox color="primary" label="By submitting this form I agree to Terms of Use" class="mb-4" hide-details />
+              <v-checkbox color="primary" label="By submitting this form I agree to Terms of Use" class="mb-4"
+                hide-details />
 
               <v-btn color="primary" block size="large" @click="submit">
                 Send
@@ -208,7 +236,7 @@
 
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserInfoStore } from '@/store/index.js'
 import ImagesProductView from '../components/productview/ImagesProductView.vue'

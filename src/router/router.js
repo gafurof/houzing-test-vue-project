@@ -5,6 +5,7 @@ import PageMain from '@/pages/PageMain.vue'
 import PageProperties from '@/pages/PageProperties.vue'
 import PageFavourites from '@/pages/PageFavourites.vue'
 import PageProductView from '@/pages/PageProductView.vue'
+import PageMyProperties from '@/pages/PageMyProperties.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,6 +13,7 @@ const router = createRouter({
     { path: '/', redirect: '/main' },
     { path: '/main', component: PageMain },
     { path: '/properties', component: PageProperties, },
+    { path: '/myproperties', component: PageMyProperties, },
     { path: '/favourites/:id', component: PageFavourites },
     {
       path: '/product/:id',
