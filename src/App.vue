@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <v-main class="overflow-y-auto" >
-      <TheNav />
+    <v-main class="overflow-y-auto">
+      <TheNav/>
       <router-view></router-view>
-      <TheFooter />
+      <TheFooter/>
     </v-main>
   </v-app>
 </template>
 
 <script setup>
 import TheNav from './layouts/TheNav.vue'
-import TheFooter from '@/layouts/TheFooter.vue';
+import TheFooter from '@/layouts/TheFooter.vue'
 </script>
 
 <style>

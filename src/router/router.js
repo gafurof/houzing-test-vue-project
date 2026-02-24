@@ -6,14 +6,18 @@ import PageProperties from '@/pages/PageProperties.vue'
 import PageFavourites from '@/pages/PageFavourites.vue'
 import PageProductView from '@/pages/PageProductView.vue'
 import PageMyProperties from '@/pages/PageMyProperties.vue'
+import PageUserProfile from '@/pages/PageUserProfile.vue'
+import PageSignIn from '@/pages/PageSignIn.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/main' },
     { path: '/main', component: PageMain },
+    { path: '/sign-in', component: PageSignIn },
+    { path: '/profile', component: PageUserProfile },
     { path: '/properties', component: PageProperties },
-    { path: '/myproperties', component: PageMyProperties },
+    { path: '/my-properties', component: PageMyProperties },
     { path: '/favourites/:id', component: PageFavourites },
     {
       path: '/product/:id',

@@ -12,9 +12,11 @@
     "@fontsource/roboto": "5.2.7",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@mdi/font": "7.4.47",
+    "echarts": "^6.0.0",
     "leaflet": "^1.9.4",
     "pinia": "^3.0.4",
     "vue": "^3.5.21",
+    "vue-echarts": "^8.0.1",
     "vue-router": "^5.0.2",
     "vuetify": "^3.10.1"
   },
