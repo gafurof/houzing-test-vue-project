@@ -6,11 +6,11 @@
       </template>
 
       <v-list>
-        <v-list-item value="profile">
-          <v-list-item-title>Login</v-list-item-title>
+        <v-list-item value="sign-in" to="/sign-in" link>
+          <v-list-item-title>Sign in</v-list-item-title>
         </v-list-item>
-        <v-list-item value="properties">
-          <v-list-item-title>Sign Up</v-list-item-title>
+        <v-list-item value="register" to="/register" link>
+          <v-list-item-title>Registration</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

@@ -74,6 +74,19 @@
         <v-row no-gutters>
           <v-col cols="12">
             <v-sheet class="pa-4 ma-2">
+              <h3 class="mb-4">Location</h3>
+
+              <v-row class="text-body-2 mb-4">
+                <v-col cols="12" md="4">
+                  <strong>Address:</strong> {{ product.address }}
+                </v-col>
+                <v-col cols="12" md="4">
+                  <strong>City:</strong> {{ product.city }}
+                </v-col>
+                <v-col cols="12" md="4">
+                  <strong>Country:</strong> {{ product.country }}
+                </v-col>
+              </v-row>
               <TheMap />
             </v-sheet>
           </v-col>
@@ -176,7 +189,7 @@
             </v-sheet>
           </v-col>
         </v-row>
-        <v-divider v-if="!$vuetify.display.mdAndUp" ></v-divider>
+        <v-divider v-if="!$vuetify.display.mdAndUp"></v-divider>
         <v-row v-if="!$vuetify.display.mdAndUp" no-gutters>
           <v-col cols="12">
             <v-sheet class="pa-4 ma-2">

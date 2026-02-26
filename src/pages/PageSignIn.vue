@@ -9,8 +9,9 @@
         <v-text-field v-model="password" :readonly="loading" :rules="[required]" label="Password"
           placeholder="Enter your password" clearable></v-text-field>
         <v-checkbox v-model="terms" color="secondary" label="Remember me"></v-checkbox>
-      
 
+
+        <router-link to="/register">I haven't account</router-link>
         <v-btn :disabled="!form" :loading="loading" color="primary" size="large" type="submit" variant="elevated" block>
           Sign In
         </v-btn>
