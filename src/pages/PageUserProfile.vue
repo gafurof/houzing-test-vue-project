@@ -1,11 +1,10 @@
 <template>
-  <v-container>
+  <v-container :style="{ height: store.accauntStatus.role === 'buyer' ? '90vh' : '' }">
 
-    <!-- HEADER -->
-    <v-row class="py-1">
+    <v-row class="py-1" >
       <v-col cols="6">
         <div class="text-h5 font-weight-bold">
-          John Doe
+          {{ fullName }}
         </div>
         <div class="text-body-2 text-medium-emphasis">
           Personal Cabinet
@@ -16,13 +15,12 @@
           Log Out
         </v-btn>
       </v-col>
-      <EditProfileModal />
+      <EditProfileModal class="mb-4"/>
     </v-row>
 
     <v-divider></v-divider>
 
-    <!-- TOTAL EARNED -->
-    <v-row class="mb-4 mt-4">
+    <v-row class="mb-4 mt-4" v-if="store.accauntStatus.role === 'seller'">
       <v-col cols="12">
         <div class="text-h6 font-weight-bold">
           Total Earned
@@ -36,9 +34,8 @@
       </v-col>
     </v-row>
 
-    <!-- SALES CHART -->
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" v-if="store.accauntStatus.role == 'seller'">
         <v-sheet>
           <v-chart :option="chartOptions" style="height: 350px; width: 100%;" autoresize />
         </v-sheet>
@@ -50,6 +47,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { useUserInfoStore } from '@/store/index.js'
 import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
 import { LineChart } from 'echarts/charts'
@@ -60,6 +58,12 @@ import {
 import { CanvasRenderer } from 'echarts/renderers'
 import EditProfileModal from '@/components/edit-profile/EditProfileModal.vue'
 
+const store = useUserInfoStore()
+
+const fullName = computed(() => {
+  return `${store.accauntStatus.firstName} ${store.accauntStatus.lastName}`
+})
+
 use([
   LineChart,
   GridComponent,
@@ -67,8 +71,7 @@ use([
   CanvasRenderer
 ])
 
-// Sotilgan uylar narxi
-const soldPrices = [70000, 150000, 100000, 60000, 130000, 70000, 150000]
+const soldPrices = store.accauntStatus.soldPrices
 
 const totalEarned = computed(() =>
   soldPrices.reduce((a, b) => a + b, 0)

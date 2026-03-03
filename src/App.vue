@@ -1,15 +1,20 @@
 <template>
   <v-app>
     <v-main class="overflow-y-auto">
-      <TheNav/>
-      <router-view></router-view>
-      <TheFooter/>
+      <TheNav />
+      <v-expand-transition>
+        <div :key="$route.fullPath">
+          <router-view />
+        </div>
+      </v-expand-transition>
+
+      <TheFooter />
     </v-main>
   </v-app>
 </template>
 
 <script setup>
-import TheNav from './layouts/TheNav.vue'
+import TheNav from '@/layouts/TheNav.vue'
 import TheFooter from '@/layouts/TheFooter.vue'
 </script>
 
@@ -21,9 +26,7 @@ html {
 
 ::-webkit-scrollbar {
   width: 0;
-  /* Remove scrollbar space */
   background: transparent;
-  /* Optional: just make scrollbar invisible */
 }
 
 body {

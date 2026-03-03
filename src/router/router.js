@@ -22,7 +22,7 @@ const router = createRouter({
     { path: '/properties', component: PageProperties },
     { path: '/my-properties', component: PageMyProperties },
     { path: '/add-propertie', component: PageAddPropertie },
-    { path: '/favourites/:id', component: PageFavourites },
+    { path: '/favourites', component: PageFavourites },
     {
       path: '/product/:id',
       name: 'product',

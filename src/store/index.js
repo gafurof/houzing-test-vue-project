@@ -2,11 +2,20 @@ import { defineStore } from 'pinia'
 
 export const useUserInfoStore = defineStore('userInfo', {
   state: () => ({
+    accauntStatus: {
+      firstName: 'John',
+      lastName: 'Doe',
+      role: 'buyer',
+      soldPrices: [70000, 150000, 100000, 60000, 130000, 70000],
+      favourites: ['7', '3', '2', '5'],
+      properties: '',
+    },
     isLoggedIn: true,
     properties: [
       {
         id: 1,
         title: 'Dom1',
+        type: 'Apartment',
         address: "329 Queensberry Street",
         city: "Jersey City",
         country: "USA",
@@ -137,6 +146,13 @@ export const useUserInfoStore = defineStore('userInfo', {
           "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284702_1280.jpg"
         ]
       },
-    ]
+    ],
   }),
+  actions: {
+    changeStatus(userRole, firstName, lastName) {
+      this.accauntStatus.role = userRole,
+      this.accauntStatus.firstName = firstName,
+      this.accauntStatus.lastName = lastName
+    }
+  },
 })

@@ -9,7 +9,8 @@
               <v-text-field variant="underlined" class="mb-2" label="Property title" clearable></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
-              <v-text-field variant="underlined" class="mb-2" label="Type" clearable></v-text-field>
+              <v-select variant="underlined" :items="['Apartment', 'House', 'Villa', 'Townhouse', 'Warehouse']"
+                label="Type" required></v-select>
             </v-col>
             <v-col cols="12" sm="12">
               <v-textarea clearable label="Property Description" variant="underlined"></v-textarea>
@@ -28,7 +29,9 @@
               <v-select variant="underlined" :items="['seller', 'buyer']" label="Parent Property" required></v-select>
             </v-col>
             <v-col cols="12" sm="4">
-              <v-select variant="underlined" :items="['seller', 'buyer']" label="Status" required></v-select>
+              <v-select variant="underlined"
+                :items="['For Sale', 'For Rent', 'Sold', 'Rented', 'Pending', 'Under Contract']" label="Status"
+                required></v-select>
             </v-col>
             <v-col cols="12" sm="4">
               <v-text-field variant="underlined" label="Label" clearable></v-text-field>
@@ -68,7 +71,9 @@
         <v-card title="Location" rounded="0">
           <v-row gap="16" class="px-5">
             <v-col cols="12" sm="6">
-              <v-select variant="underlined" :items="['seller', 'buyer']" label="Regions" required></v-select>
+              <v-select variant="underlined"
+                :items="['Uzbekistan', 'London', 'India', 'France', 'Italy', 'Russia', 'Turkey']" label="Regions"
+                required></v-select>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field variant="underlined" class="mb-2" label="Friendly adress" clearable></v-text-field>
@@ -214,10 +219,10 @@
 
       <v-col cols="12" sm="12">
         <v-row class="px-3" justify="end">
-          <v-btn loading v-if="!mobile" color="primary" size="large" class="px-15 my-3">
+          <v-btn :loading="loading" @click="loading = !loading" v-if="!mobile" color="primary" size="large" class="px-15 my-3">
             Submit
           </v-btn>
-          <v-btn v-else block color="primary" size="large" class="my-3">
+          <v-btn :loading="loading" @click="loading = !loading" v-else block color="primary" size="large" class="my-3">
             Submit
           </v-btn>
         </v-row>
@@ -228,13 +233,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import TheMap from '@/components/map/TheMap.vue';
 
 const { mobile } = useDisplay()
+const router = useRouter()
 const images = ref([])
 const fileInput = ref(null)
+
+const loading = ref(false)
+
+watch(loading, val => {
+  if (!val) return
+  setTimeout(() => (
+    loading.value = false,
+    router.push('/my-properties')
+  ), 2000)
+})
 
 const handleFiles = (files) => {
   for (const file of files) {
