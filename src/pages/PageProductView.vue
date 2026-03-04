@@ -9,7 +9,7 @@
             <p>Quincy St, Brooklyn, NY, USA</p>
           </div>
           <div>
-            <v-btn icon="mdi-heart" variant="tonal"></v-btn>
+            <v-btn :color="favourites.includes(String(product.id)) ? 'red' : 'black'" icon="mdi-heart" variant="tonal" @click="likeButton(product.id)"></v-btn>
           </div>
         </v-sheet>
         <v-divider></v-divider>
@@ -249,7 +249,7 @@
 
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserInfoStore } from '@/store/index.js'
 import ImagesProductView from '../components/productview/ImagesProductView.vue'
@@ -263,9 +263,21 @@ const product = computed(() =>
 )
 
 const isExpanded = ref(false)
+const favourites = reactive(store.accauntStatus.favourites)
 
 const shortText = computed(() => {
   if (!product.value?.description) return ''
   return product.value.description.slice(0, 200) + '...'
 })
+
+const likeButton = (id) => {
+  if (favourites.includes(String(id))) {
+    const index = favourites.indexOf(String(id))
+    if (index > -1) {
+      favourites.splice(index, 1)
+    }
+  } else {
+    favourites.push(String(id))
+  }
+}
 </script>

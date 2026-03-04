@@ -1,44 +1,79 @@
 <template>
-  <v-sheet :height="mobile ? 226 : 400" rounded elevation="2">
+  <v-sheet :height="mobile ? 226 : 400" rounded elevation="2" class="position-relative">
     <div ref="mapContainer" style="height: 100%; width: 100%;"></div>
+
+    <v-btn icon="mdi-crosshairs-gps" size="small" color="primary" class="position-absolute"
+      style="bottom: 12px; right: 12px; z-index: 1000;" @click="goToUserLocation" />
   </v-sheet>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useDisplay } from 'vuetify'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-import markerIcon from 'leaflet/dist/images/marker-icon.png'
-import markerIconRetina from 'leaflet/dist/images/marker-icon-2x.png'
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 const { mobile } = useDisplay()
 const mapContainer = ref(null)
 
+let map = null
+let userCoords = null
+let routingControl = null
+
+const propertyLocation = [41.224239, 69.210270]
+
 onMounted(() => {
-  const lat = 41.224239
-  const lng = 69.210270
+  map = L.map(mapContainer.value).setView(propertyLocation, 17)
 
-  const map = L.map(mapContainer.value).setView([lat, lng], 19)
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    subdomains: 'abcd',
-    maxZoom: 20
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
   }).addTo(map)
 
-  delete L.Icon.Default.prototype._getIconUrl
+  const propertyMarker = L.marker(propertyLocation).addTo(map)
+  propertyMarker.bindPopup("🏠 Property").openPopup()
 
-  L.Icon.Default.mergeOptions({
-    iconUrl: markerIcon,
-    iconRetinaUrl: markerIconRetina,
-    shadowUrl: markerShadow,
-  })
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      userCoords = [pos.coords.latitude, pos.coords.longitude]
 
-  L.marker([lat, lng]).addTo(map)
-  L.marker([41.220873, 69.214512]).addTo(map)
-  L.marker([41.220765, 69.213420]).addTo(map)
-  L.marker([41.224239, 69.211400]).addTo(map)
-  L.marker([41.225239, 69.211400]).addTo(map)
+      const userMarker = L.circleMarker(userCoords, {
+        radius: 10,
+        fillColor: 'red',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map)
+      userMarker.bindPopup("📍 Your Location").openPopup()
+
+      routingControl = L.Routing.control({
+        waypoints: [
+          L.latLng(userCoords[0], userCoords[1]),
+          L.latLng(propertyLocation[0], propertyLocation[1])
+        ],
+        routeWhileDragging: false,
+        draggableWaypoints: false,
+        addWaypoints: false,
+        show: false,
+        lineOptions: { styles: [{ color: 'blue', weight: 5 }] },
+        createMarker: () => null
+      }).addTo(map)
+
+      routingControl.on('routesfound', function (e) {
+        const route = e.routes[0]
+        const distanceKm = (route.summary.totalDistance / 1000).toFixed(2)
+        const timeMin = Math.round(route.summary.totalTime / 60)
+
+        propertyMarker.setPopupContent(`
+          🏠 Property<br>
+          Distance: ${distanceKm} km 🚗<br>
+          Time: ${timeMin} min ⏱
+        `).openPopup()
+      })
+    }, (err) => console.error("GPS error:", err))
+  }
 })
+
+function goToUserLocation() {
+  if (userCoords && map) {
+    map.flyTo(userCoords, 17, { duration: 1.5 })
+  }
+}
 </script>

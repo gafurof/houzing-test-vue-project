@@ -3,8 +3,8 @@
     <v-sheet class="overlay" tile></v-sheet>
 
     <v-row class="fill-height d-flex flex-column align-center justify-center">
-      <p class="title-text">Skyper Pool Partment</p>
-      <p class="address-text mt-1">112 Glenwood Ave Hyde Park, Boston, MA</p>
+      <p class="title-text">{{ propertie.title }}</p>
+      <p class="address-text mt-1">{{ propertie.address }}</p>
 
       <div class="d-flex align-center ga-4 justify-space-between pa-3">
 
@@ -30,14 +30,23 @@
 
       </div>
 
-      <p class="custom-text mt-3">$5.250/mo</p>
+      <p class="custom-text mt-3">${{ propertie.price }}/mo</p>
 
-      <v-btn class="outline-btn mt-5" variant="outlined" size="large">
+      <v-btn :to="`/product/${propertie.id}`" class="outline-btn mt-5" variant="outlined" size="large">
         Read More
       </v-btn>
     </v-row>
   </v-img>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useUserInfoStore } from '@/store/index.js'
+
+const store = useUserInfoStore()
+const propertie = ref(store.properties[0])
+
+</script>
 
 <style scoped>
 .my-bg {

@@ -53,7 +53,7 @@
               </div>
               <div class="d-flex ga-3 pr-2">
                 <v-btn :to="'/product/' + propertie.id" icon="mdi-fullscreen" variant="text"></v-btn>
-                <v-btn :color="propertie.like ? 'red' : 'succes'" icon="mdi-heart" variant="tonal"></v-btn>
+                <v-btn :color="favourites.includes(String(propertie.id)) ? 'red' : 'black'" icon="mdi-heart" variant="tonal" @click="likeButton(propertie.id)"></v-btn>
               </div>
             </div>
           </v-card>
@@ -65,11 +65,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useUserInfoStore } from '@/store/index.js'
 import { useDisplay } from 'vuetify'
 
 const { mdAndUp } = useDisplay()
+const store = useUserInfoStore()
 
+const favourites = reactive(store.accauntStatus.favourites)
 const loading = ref(true)
 
 setTimeout(() => {
@@ -82,4 +85,15 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const likeButton = (id) => {
+  if (favourites.includes(String(id))) {
+    const index = favourites.indexOf(String(id))
+    if (index > -1) {
+      favourites.splice(index, 1)
+    }
+  } else {
+    favourites.push(String(id))
+  }
+}
 </script>
