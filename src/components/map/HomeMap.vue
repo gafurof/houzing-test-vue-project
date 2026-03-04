@@ -1,13 +1,16 @@
 <template>
   <v-container class="mb-15">
     <h2 class="text-center mt-13">Find Properties Near You</h2>
-    <p class="text-center mb-7">Use our interactive map to browse all available properties and discover the best options in your immediate area.</p>
-    <v-sheet :height="mobile ? 400 : 600" rounded elevation="2" class="position-relative">
-      <div ref="mapContainer" style="height: 100%; width: 100%;"></div>
+    <p class="text-center mb-2">Use our interactive map to browse all available properties and discover the best options
+      in your immediate area.</p>
+    <v-container>
+      <v-sheet :height="mobile ? 400 : 600" rounded elevation="2" class="position-relative">
+        <div ref="mapContainer" style="height: 100%; width: 100%;"></div>
 
-      <v-btn icon="mdi-crosshairs-gps" size="small" color="primary" class="position-absolute"
-        style="bottom: 12px; right: 12px; z-index: 1000;" @click="goToUserLocation" />
-    </v-sheet>
+        <v-btn icon="mdi-crosshairs-gps" size="small" color="primary" class="position-absolute"
+          style="bottom: 12px; right: 12px; z-index: 1000;" @click="goToUserLocation" />
+      </v-sheet>
+    </v-container>
   </v-container>
 </template>
 
