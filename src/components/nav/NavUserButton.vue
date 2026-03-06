@@ -15,6 +15,9 @@
         <v-list-item value="favourites" to='/favourites' link>
           <v-list-item-title>Favourites</v-list-item-title>
         </v-list-item>
+        <v-list-item value="properties" to="/add-propertie" link v-if="store.accountStatus.role === 'seller'">
+          <v-list-item-title>Add Propertie</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
   </div>
