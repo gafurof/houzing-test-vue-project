@@ -42,9 +42,11 @@
           <div class="d-flex align-center justify-space-between">
             <div>
               <v-card-subtitle>
-                <del class="me-1">{{ item.oldPrice }}</del>
+                <del class="me-1" v-if="item.type === 'for rent'">${{ item.oldPrice }}/mo</del>
+                <del class="me-1" v-else>${{ item.oldPrice }}</del>
               </v-card-subtitle>
-              <v-card-title>{{ item.price }}</v-card-title>
+                <v-card-title v-if="item.type === 'for rent'">${{ item.price }}/mo</v-card-title>
+                <v-card-title v-else>${{ item.price }}</v-card-title>
             </div>
             <div class="d-flex ga-3 pr-2">
               <v-btn :to="'/product/' + item.id" icon="mdi-fullscreen" variant="text"></v-btn>
@@ -97,9 +99,11 @@
           <div class="d-flex align-center justify-space-between">
             <div>
               <v-card-subtitle>
-                <del class="me-1">{{ item.oldPrice }}</del>
+                <del class="me-1" v-if="item.type === 'for rent'">${{ item.oldPrice }}/mo</del>
+                <del class="me-1" v-else>${{ item.oldPrice }}</del>
               </v-card-subtitle>
-              <v-card-title>{{ item.price }}</v-card-title>
+                <v-card-title v-if="item.type === 'for rent'">${{ item.price }}/mo</v-card-title>
+                <v-card-title v-else>${{ item.price }}</v-card-title>
             </div>
             <div class="d-flex ga-3 pr-2">
               <v-btn :to="'/product/' + item.id" icon="mdi-fullscreen" variant="text"></v-btn>

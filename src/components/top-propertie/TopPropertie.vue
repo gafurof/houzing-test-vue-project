@@ -30,7 +30,8 @@
 
       </div>
 
-      <p class="custom-text mt-3">${{ propertie.price }}/mo</p>
+      <p class="custom-text mt-3" v-if="propertie.type === 'for sale'">${{ propertie.price }}/mo</p>
+      <p class="custom-text mt-3" v-else>${{ propertie.price }}</p>
 
       <v-btn :to="`/product/${propertie.id}`" class="outline-btn mt-5" variant="outlined" size="large">
         Read More
