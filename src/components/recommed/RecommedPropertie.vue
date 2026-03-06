@@ -8,10 +8,10 @@
 </template>
 
 <script setup>
-import { useUserInfoStore } from '@/store/index.js'
+import { usePropertyStore  } from '@/stores/propertyStore'
 import SlideGropProperites from '../slide-grop/SlideGropProperites.vue'
 
-const userStore = useUserInfoStore()
 
-const topProperties = userStore.properties.slice(0, 5)
+const store = usePropertyStore ()
+const topProperties = store.properties.slice(0, 5)
 </script>

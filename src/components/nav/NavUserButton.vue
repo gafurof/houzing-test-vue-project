@@ -9,7 +9,7 @@
         <v-list-item value="profile" to="/profile" link>
           <v-list-item-title>My Profile</v-list-item-title>
         </v-list-item>
-        <v-list-item value="properties" to="/my-properties" link v-if="store.accauntStatus.role === 'seller'">
+        <v-list-item value="properties" to="/my-properties" link v-if="store.accountStatus.role === 'seller'">
           <v-list-item-title>My Properties</v-list-item-title>
         </v-list-item>
         <v-list-item value="favourites" to='/favourites' link>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { useUserInfoStore } from '@/store/index.js'
+import { useUserInfoStore } from "@/stores/userInfoStore"
 
 const store = useUserInfoStore()
 </script>

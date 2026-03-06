@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="{ height: store.accauntStatus.role === 'buyer' ? '90vh' : '' }">
+  <v-container :style="{ height: store.accountStatus.role === 'buyer' ? '90vh' : '' }">
 
     <v-row class="py-1" >
       <v-col cols="6">
@@ -20,7 +20,7 @@
 
     <v-divider></v-divider>
 
-    <v-row class="mb-4 mt-4" v-if="store.accauntStatus.role === 'seller'">
+    <v-row class="mb-4 mt-4" v-if="store.accountStatus.role === 'seller'">
       <v-col cols="12">
         <div class="text-h6 font-weight-bold">
           Total Earned
@@ -35,7 +35,7 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12" v-if="store.accauntStatus.role == 'seller'">
+      <v-col cols="12" v-if="store.accountStatus.role === 'seller'">
         <v-sheet>
           <v-chart :option="chartOptions" style="height: 350px; width: 100%;" autoresize />
         </v-sheet>
@@ -47,7 +47,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useUserInfoStore } from '@/store/index.js'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
 import { LineChart } from 'echarts/charts'
@@ -61,7 +61,7 @@ import EditProfileModal from '@/components/edit-profile/EditProfileModal.vue'
 const store = useUserInfoStore()
 
 const fullName = computed(() => {
-  return `${store.accauntStatus.firstName} ${store.accauntStatus.lastName}`
+  return `${store.accountStatus.firstName} ${store.accountStatus.lastName}`
 })
 
 use([
@@ -71,7 +71,7 @@ use([
   CanvasRenderer
 ])
 
-const soldPrices = store.accauntStatus.soldPrices
+const soldPrices = store.accountStatus.soldPrices
 
 const totalEarned = computed(() =>
   soldPrices.reduce((a, b) => a + b, 0)

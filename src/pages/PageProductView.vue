@@ -251,20 +251,21 @@
 <script setup>
 import { ref, computed, reactive } from 'vue'
 import { useRoute } from 'vue-router'
-import { useUserInfoStore } from '@/store/index.js'
+import { usePropertyStore  } from '@/stores/propertyStore'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import ImagesProductView from '../components/productview/ImagesProductView.vue'
 import TheMap from '../components/map/TheMap.vue'
 
-const store = useUserInfoStore()
+const storeUserInfo = useUserInfoStore()
+const storeProperties = usePropertyStore ()
 const route = useRoute()
 
 const product = computed(() =>
-  store.properties.find(p => p.id === Number(route.params.id))
+  storeProperties.properties.find(p => p.id === Number(route.params.id))
 )
 
 const isExpanded = ref(false)
-const favourites = reactive(store.accauntStatus.favourites)
-
+const favourites = reactive(storeUserInfo.accountStatus.favourites)
 const shortText = computed(() => {
   if (!product.value?.description) return ''
   return product.value.description.slice(0, 200) + '...'

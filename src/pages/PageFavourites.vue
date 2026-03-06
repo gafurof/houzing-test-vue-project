@@ -10,15 +10,17 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useUserInfoStore } from '@/store/index.js'
+import { useUserInfoStore } from '@/stores/userInfoStore'
+import { usePropertyStore } from '@/stores/propertyStore'
 import PropertiesList from '@/components/properties-list/PropertiesList.vue'
 
-const store = useUserInfoStore()
+const storeUserInfo = useUserInfoStore()
+const storeProperties = usePropertyStore()
 
 const properties = computed(() => {
-  console.log(store.properties)
-  return store.properties.filter(property =>
-    store.accauntStatus.favourites.includes(String(property.id))
+  console.log(storeProperties.properties)
+  return storeProperties.properties.filter(property =>
+    storeUserInfo.accountStatus.favourites.includes(String(property.id))
   )
 })
 </script>

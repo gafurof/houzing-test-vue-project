@@ -41,9 +41,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useUserInfoStore } from '@/store/index.js'
+import { usePropertyStore } from '@/stores/propertyStore'
 
-const store = useUserInfoStore()
+const store = usePropertyStore()
 const propertie = ref(store.properties[0])
 
 </script>

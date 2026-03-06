@@ -3,6 +3,7 @@
     <v-row class="align-center" :class="{ 'elevation-3 rounded-lg ma-1': !mdAndUp }">
       <v-col cols="12" md="8">
         <v-text-field
+          v-model="address"
           variant="outlined"
           label="Enter an address, neighborhood, city, or ZIP code"
           hide-details
@@ -17,7 +18,7 @@
       </v-col>
 
       <v-col cols="12" md="2">
-        <AdvancedDialog/>
+        <AdvancedDialog />
       </v-col>
 
       <v-col cols="12" md="2">
@@ -30,9 +31,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, defineEmits } from 'vue'
 import { useDisplay } from 'vuetify'
 import AdvancedDialog from './AdvancedDialog.vue';
 
 const { mdAndUp } = useDisplay()
+const address = ref('')
+
+const emit = defineEmits(['updateAddress'])
+
+watch(address, (newVal) => {
+  if (newVal && newVal.trim() !== '') {
+    emit('updateAddress', newVal) 
+  } else {
+    emit('updateAddress', false)
+  }
+})
 </script>

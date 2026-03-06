@@ -114,7 +114,7 @@
 </template>
 
 <script setup>
-import { useUserInfoStore } from '@/store/index.js'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useDisplay } from 'vuetify'
 import { defineProps, reactive } from 'vue'
 
@@ -128,7 +128,7 @@ const props = defineProps({
   }
 })
 
-const favourites = reactive(store.accauntStatus.favourites)
+const favourites = reactive(store.accountStatus.favourites)
 
 const likeButton = (id) => {
   if (favourites.includes(String(id))) {

@@ -28,11 +28,11 @@
       <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer class="d-md-none"></v-spacer>
 
-      <v-img src="@/assets/navLogo.png" class="d-md-none" style="height: 44px; width: 150px; margin-left: 12%;"
-        alt="Logo" contain></v-img>
+      <v-img src="@/assets/navLogo.png" class="d-md-none" style="height: 44px; width: 150px; margin-left: 12%; cursor: pointer;"
+        alt="Logo" @click="router.push('/')" contain></v-img>
 
-      <v-img src="@/assets/navLogo.png" class="d-none d-md-flex" alt="Logo" max-height="36" max-width="120"
-        contain></v-img>
+      <v-img src="@/assets/navLogo.png" class="d-none d-md-flex" style="cursor: pointer;" alt="Logo" max-height="36" max-width="120"
+        contain @click="router.push('/')" ></v-img>
 
       <v-spacer></v-spacer>
 
@@ -59,13 +59,15 @@
 
 <script setup>
 import { ref, computed, reactive } from 'vue'
-import { useUserInfoStore } from '@/store/index.js'
+import { useUserInfoStore } from '@/stores/userInfoStore'
+import { useRouter } from 'vue-router'
 
 import NavLoginButtonDekstop from '@/components/nav/NavLoginButtonDekstop.vue'
 import NavLoginButtonMobile from '@/components/nav/NavLoginButtonMobile.vue'
 import NavUserButton from '@/components/nav/NavUserButton.vue'
 
 const store = useUserInfoStore()
+const router = useRouter()
 
 const drawer = ref(false)
 
