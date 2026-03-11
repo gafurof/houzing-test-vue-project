@@ -13,8 +13,8 @@
       <v-col cols="12" md="5">
         <v-row no-gutters>
           <v-col cols="12" sm="4" md="4">
-            <v-card rounded="md" class="position-relative">
-              <v-img :src="item.image" height="120" cover />
+                  <v-card rounded="md" class="position-relative">
+                    <v-img :src="(item.images && item.images[0]) || fallbackImg" height="120" cover />
               <v-btn v-if="item.featured" size="x-small" color="primary" class="position-absolute"
                 style="top:8px; left:8px">FEATURED</v-btn>
             </v-card>
@@ -53,6 +53,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import fallbackImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { properties } from '@/data/properties'
 

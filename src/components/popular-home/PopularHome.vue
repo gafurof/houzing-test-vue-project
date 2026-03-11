@@ -1,6 +1,6 @@
 <template>
   <v-card width="100%" height="571px" rounded="0" class="overflow-hidden">
-    <v-img src="@/assets/unsplash_2gDwlIim3Uw.png" height="100%" width="100%" cover
+    <v-img :src="topImage" height="100%" width="100%" cover
       gradient="to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)" class="d-flex align-center justify-center">
       <v-row class="fill-height ma-0" align="center" justify="center" dense no-gutters>
         <v-col class="text-center d-flex flex-column align-center">
@@ -18,6 +18,7 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePropertyStore } from '@/stores/propertyStore'
+import fallbackImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 
 const router = useRouter()
 const store = usePropertyStore()
@@ -36,8 +37,8 @@ const topProperty = computed(() => {
 
 const topImage = computed(() => {
   const p = topProperty.value
-  if (!p) return require('@/assets/unsplash_2gDwlIim3Uw.png')
-  return (p.images && p.images[0]) || require('@/assets/unsplash_2gDwlIim3Uw.png')
+  if (!p) return fallbackImg
+  return (p.images && p.images[0]) || fallbackImg
 })
 
 const titleText = computed(() => {

@@ -14,10 +14,10 @@ export const properties = [
     oldPrice: '150000',
     price: '120000',
     images: [
-      "https://picsum.photos/id/1018/1200/800",
-      "https://picsum.photos/id/1019/1200/800",
-      "https://picsum.photos/id/1020/1200/800",
-      "https://picsum.photos/id/1021/1200/800"
+      "https://images.unsplash.com/photo-1560185127-6b8d9b9f0f3c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1598928506312-4c8f8b5f1c90?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -60,10 +60,10 @@ export const properties = [
     oldPrice: '650',
     price: '500',
     images: [
-      "https://picsum.photos/id/1022/1200/800",
-      "https://picsum.photos/id/1023/1200/800",
-      "https://picsum.photos/id/1024/1200/800",
-      "https://picsum.photos/id/1025/1200/800"
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -93,10 +93,10 @@ export const properties = [
     oldPrice: '90000',
     price: '80000',
     images: [
-      "https://picsum.photos/id/1026/1200/800",
-      "https://picsum.photos/id/1027/1200/800",
-      "https://picsum.photos/id/1028/1200/800",
-      "https://picsum.photos/id/1029/1200/800"
+      "https://images.unsplash.com/photo-1549187774-b4e9b0445b56?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1598928506312-4c8f8b5f1c90?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -137,10 +137,10 @@ export const properties = [
     oldPrice: '400000',
     price: '350000',
     images: [
-      "https://picsum.photos/id/1030/1200/800",
-      "https://picsum.photos/id/1031/1200/800",
-      "https://picsum.photos/id/1032/1200/800",
-      "https://picsum.photos/id/1033/1200/800"
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1533777324565-a040eb52fac2?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -168,10 +168,10 @@ export const properties = [
     oldPrice: '350',
     price: '300',
     images: [
-      "https://picsum.photos/id/1034/1200/800",
-      "https://picsum.photos/id/1035/1200/800",
-      "https://picsum.photos/id/1036/1200/800",
-      "https://picsum.photos/id/1037/1200/800"
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -203,10 +203,10 @@ export const properties = [
     oldPrice: '500',
     price: '450',
     images: [
-      "https://picsum.photos/id/1038/1200/800",
-      "https://picsum.photos/id/1039/1200/800",
-      "https://picsum.photos/id/1040/1200/800",
-      "https://picsum.photos/id/1041/1200/800"
+      "https://images.unsplash.com/photo-1505692794401-3a2c3b6eea2f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -232,10 +232,10 @@ export const properties = [
     oldPrice: '70000',
     price: '60000',
     images: [
-      "https://picsum.photos/id/1042/1200/800",
-      "https://picsum.photos/id/1043/1200/800",
-      "https://picsum.photos/id/1044/1200/800",
-      "https://picsum.photos/id/1045/1200/800"
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560185127-6b8d9b9f0f3c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1549187774-b4e9b0445b56?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [
@@ -273,7 +273,7 @@ export const properties = [
     oldPrice: '60000',
     price: '50000',
     images: [
-      "https://picsum.photos/id/1046/1200/800"
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
     ]
     ,
     views: [

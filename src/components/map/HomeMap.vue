@@ -16,6 +16,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
+import fallbackImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 import { useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { usePropertyStore } from '@/stores/propertyStore'
@@ -57,15 +58,16 @@ function addMarkers() {
     const views = store.viewsInLastDays ? store.viewsInLastDays(p, 7) : (p.views ? p.views.length : 0)
     const price = p.price || ''
     const popupId = `open-${p.id}`
+    const imageSrc = (p.images && p.images[0]) || fallbackImg
     const popupContent = `
       <div>
         <strong>🏠 ${p.title || 'Property'}</strong><br>
+        <img src="${imageSrc}" style="width:220px;height:auto;margin-top:8px;display:block;" />
         Price: ${price}<br>
         Views (7d): ${views}<br>
         <button id="${popupId}" style="margin-top:8px;padding:6px 10px;cursor:pointer;">Open property</button>
       </div>`
     m.bindPopup(popupContent)
-    // when popup opens attach click handler to the button inside the popup
     m.on('popupopen', () => {
       const btn = document.getElementById(popupId)
       if (btn) {
@@ -79,13 +81,11 @@ function addMarkers() {
     markers.push(m)
   })
 
-  // If we have markers and user location, fit bounds
   if (markers.length) {
     const group = L.featureGroup(markers.concat(userCoords ? [L.circleMarker(userCoords)] : []))
     try {
       map.fitBounds(group.getBounds().pad(0.2))
     } catch (e) {
-      // ignore if fitBounds fails
     }
   }
 }
@@ -99,7 +99,6 @@ onMounted(() => {
 
   addMarkers()
 
-  // User location
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(pos => {
       userCoords = [pos.coords.latitude, pos.coords.longitude]
@@ -112,14 +111,12 @@ onMounted(() => {
       }).addTo(map)
       userMarker.bindPopup("📍 Your Location")
 
-      // Recalculate bounds with new user marker
       addMarkers()
     }, err => console.error(err))
   }
 })
 
 watch(properties, () => {
-  // update markers when properties change
   addMarkers()
 }, { deep: true })
 

@@ -8,7 +8,7 @@
         <v-col v-for="propertie in properties" :key="propertie.title" cols="12" sm="6" md="4" class="d-flex">
           <v-card class="rounded-0 elevation-1" :style="{ width: mdAndUp ? '380px' : '343px' }"
             :class="{ 'ma-5': !mdAndUp }">
-            <v-img height="250" src="@/assets/unsplash_2gDwlIim3Uw.png" cover class="position-relative">
+            <v-img height="250" :src="(propertie.images && propertie.images[0]) || defaultImg" cover class="position-relative">
               <div class="d-flex justify-space-between w-100 pa-3">
                 <v-btn size="small" color="primary" variant="flat">FEATURED</v-btn>
                 <v-btn size="small" color="#0D263B" variant="flat">{{ propertie.type }}</v-btn>
@@ -68,6 +68,7 @@
 
 <script setup>
 import { ref, reactive, defineProps } from 'vue'
+import defaultImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useDisplay } from 'vuetify'
 

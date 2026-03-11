@@ -4,7 +4,7 @@
     <v-slide-group v-if="mdAndUp" show-arrows>
       <v-slide-group-item v-for="item in apartments" :key="item.id">
         <v-card width="380" class="mr-6 ma-2">
-          <v-img height="250" src="@/assets/unsplash_2gDwlIim3Uw.png" cover class="position-relative">
+          <v-img height="250" :src="(item.images && item.images[0]) || defaultImg" cover class="position-relative">
             <div class="d-flex justify-space-between w-100 pa-3">
               <v-btn size="small" color="primary" variant="flat">FEATURED</v-btn>
               <v-btn size="small" color="#0D263B" variant="flat">{{ item.type }}</v-btn>
@@ -60,8 +60,8 @@
 
     <v-row v-else class="justify-center ga-4">
       <v-col v-for="item in apartments" :key="item.id" cols="12" class="d-flex justify-center">
-        <v-card width="343">
-          <v-img height="250" src="@/assets/unsplash_2gDwlIim3Uw.png" cover class="position-relative">
+      <v-card width="343">
+        <v-img height="250" :src="(item.images && item.images[0]) || defaultImg" cover class="position-relative">
             <div class="d-flex justify-space-between w-100 pa-3">
               <v-btn size="small" color="primary" variant="flat">FEATURED</v-btn>
               <v-btn size="small" color="#0D263B" variant="flat">{{ item.type }}</v-btn>
@@ -119,6 +119,7 @@
 
 <script setup>
 import { useUserInfoStore } from '@/stores/userInfoStore'
+import defaultImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 import { useDisplay } from 'vuetify'
 import { defineProps, reactive } from 'vue'
 

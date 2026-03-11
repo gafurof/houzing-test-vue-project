@@ -34,14 +34,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import fallbackImg from '@/assets/unsplash_2gDwlIim3Uw.png'
+
+const props = defineProps({
+  images: {
+    type: Array,
+    default: () => [fallbackImg]
+  }
+})
 
 const dialog = ref(false)
 
-const images = [
-  'https://images.unsplash.com/photo-1507089947368-19c1da9775ae',
-  'https://images.unsplash.com/photo-1492724441997-5dc865305da7',
-  'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
-  'https://images.unsplash.com/photo-1484154218962-a197022b5858'
-]
+const images = computed(() => (props.images && props.images.length) ? props.images : [fallbackImg])
 </script>

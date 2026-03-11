@@ -1,5 +1,5 @@
 <template>
-  <v-img src="@/assets/unsplash_2gDwlIim3Uw.png" class="my-bg" cover>
+  <v-img :src="(propertie && propertie.images && propertie.images[0]) || defaultImg" class="my-bg" cover>
     <v-sheet class="overlay" tile></v-sheet>
 
     <v-row class="fill-height d-flex flex-column align-center justify-center">
@@ -43,6 +43,7 @@
 <script setup>
 import { ref } from 'vue'
 import { usePropertyStore } from '@/stores/propertyStore'
+import defaultImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 
 const store = usePropertyStore()
 const propertie = ref(store.properties[0])
