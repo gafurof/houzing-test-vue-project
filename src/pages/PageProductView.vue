@@ -87,7 +87,7 @@
                   <strong>Country:</strong> {{ product.country }}
                 </v-col>
               </v-row>
-              <TheMap />
+              <TheMap v-if="product" :lat="Number(product.lat)" :lng="Number(product.lng)" :editable="false" />
             </v-sheet>
           </v-col>
         </v-row>

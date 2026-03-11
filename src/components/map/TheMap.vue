@@ -8,8 +8,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useDisplay } from 'vuetify'
+
+const props = defineProps({
+  lat: { type: Number, default: 41.224239 },
+  lng: { type: Number, default: 69.210270 },
+  editable: { type: Boolean, default: false }
+})
+
+const emit = defineEmits(['update:lat', 'update:lng', 'select'])
 
 const { mobile } = useDisplay()
 const mapContainer = ref(null)
@@ -17,18 +25,44 @@ const mapContainer = ref(null)
 let map = null
 let userCoords = null
 let routingControl = null
+let propertyMarker = null
 
-const propertyLocation = [41.224239, 69.210270]
+function createMarkerAt(lat, lng) {
+  if (propertyMarker) {
+    propertyMarker.setLatLng([lat, lng])
+  } else {
+    propertyMarker = L.marker([lat, lng], { draggable: !!props.editable }).addTo(map)
+    propertyMarker.bindPopup("🏠 Property").openPopup()
+
+    if (props.editable) {
+      propertyMarker.on('dragend', (e) => {
+        const p = e.target.getLatLng()
+        emit('update:lat', p.lat)
+        emit('update:lng', p.lng)
+        emit('select', { lat: p.lat, lng: p.lng })
+      })
+    }
+  }
+}
 
 onMounted(() => {
-  map = L.map(mapContainer.value).setView(propertyLocation, 17)
+  const initial = [props.lat, props.lng]
+  map = L.map(mapContainer.value).setView(initial, 13)
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
   }).addTo(map)
 
-  const propertyMarker = L.marker(propertyLocation).addTo(map)
-  propertyMarker.bindPopup("🏠 Property").openPopup()
+  createMarkerAt(initial[0], initial[1])
+
+  map.on('click', (e) => {
+    if (!props.editable) return
+    const { lat, lng } = e.latlng
+    createMarkerAt(lat, lng)
+    emit('update:lat', lat)
+    emit('update:lng', lng)
+    emit('select', { lat, lng })
+  })
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -41,39 +75,24 @@ onMounted(() => {
         opacity: 1,
         fillOpacity: 0.8
       }).addTo(map)
-      userMarker.bindPopup("📍 Your Location").openPopup()
-
-      routingControl = L.Routing.control({
-        waypoints: [
-          L.latLng(userCoords[0], userCoords[1]),
-          L.latLng(propertyLocation[0], propertyLocation[1])
-        ],
-        routeWhileDragging: false,
-        draggableWaypoints: false,
-        addWaypoints: false,
-        show: false,
-        lineOptions: { styles: [{ color: 'blue', weight: 5 }] },
-        createMarker: () => null
-      }).addTo(map)
-
-      routingControl.on('routesfound', function (e) {
-        const route = e.routes[0]
-        const distanceKm = (route.summary.totalDistance / 1000).toFixed(2)
-        const timeMin = Math.round(route.summary.totalTime / 60)
-
-        propertyMarker.setPopupContent(`
-          🏠 Property<br>
-          Distance: ${distanceKm} km 🚗<br>
-          Time: ${timeMin} min ⏱
-        `).openPopup()
-      })
+      userMarker.bindPopup("📍 Your Location")
     }, (err) => console.error("GPS error:", err))
   }
 })
 
+onBeforeUnmount(() => {
+  if (map) map.remove()
+})
+
+watch(() => [props.lat, props.lng], ([lat, lng]) => {
+  if (!map) return
+  createMarkerAt(lat, lng)
+  map.setView([lat, lng], map.getZoom())
+})
+
 function goToUserLocation() {
   if (userCoords && map) {
-    map.flyTo(userCoords, 17, { duration: 1.5 })
+    map.flyTo(userCoords, 13, { duration: 1.5 })
   }
 }
 </script>

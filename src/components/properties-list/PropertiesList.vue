@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineProps } from 'vue'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useDisplay } from 'vuetify'
 

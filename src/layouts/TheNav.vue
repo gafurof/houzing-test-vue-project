@@ -7,7 +7,7 @@
           <v-list>
             <v-list-item class="text-center pa-6" title="Home" @click="drawer = false" to="/"></v-list-item>
             <v-list-item class="text-center pa-6" title="Properties" @click="drawer = false" to="/properties"></v-list-item>
-            <v-list-item class="text-center pa-6" title="Contacts" @click="drawer = false" href="#contacts" ></v-list-item>
+            <v-list-item class="text-center pa-6" title="Contacts" @click="() => { drawer = false; scrollToContacts(); }"></v-list-item>
           </v-list>
           <v-list class="d-flex mt-15">
             <v-tooltip v-for="social in socials" :key="social.name" :text="social.name" location="top">
@@ -45,7 +45,7 @@
           Properties
         </v-btn>
 
-        <v-btn href="#contacts" variant="text" exact>
+        <v-btn variant="text" exact @click="scrollToContacts">
           Contacts
         </v-btn>
       </div>
@@ -79,4 +79,9 @@ const socials = reactive([
   { name: 'LinkedIn', icon: 'mdi-linkedin', link: 'https://linkedin.com' },
   { name: 'Instagram', icon: 'mdi-instagram', link: 'https://instagram.com' },
 ])
+
+function scrollToContacts() {
+  const el = document.getElementById('contacts')
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
