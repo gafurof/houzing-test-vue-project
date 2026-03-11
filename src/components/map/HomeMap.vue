@@ -15,29 +15,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
+import { usePropertyStore } from '@/stores/propertyStore'
 
 const { mobile } = useDisplay()
 const mapContainer = ref(null)
 let map = null
 let userCoords = null
+let markerLayer = null
 
-// Expanded list of properties
-const properties = [
-  { id: 1, name: "Villa 1", coords: [41.2250, 69.2100], price: "150,000$" },
-  { id: 2, name: "Apartment 2", coords: [41.2245, 69.2120], price: "90,000$" },
-  { id: 3, name: "House 3", coords: [41.2235, 69.2110], price: "120,000$" },
-  { id: 4, name: "Villa 4", coords: [41.2228, 69.2130], price: "200,000$" },
-  { id: 5, name: "Apartment 5", coords: [41.2260, 69.2090], price: "85,000$" },
-  { id: 6, name: "House 6", coords: [41.2270, 69.2115], price: "130,000$" },
-  { id: 7, name: "Villa 7", coords: [41.2255, 69.2085], price: "180,000$" },
-  { id: 8, name: "Apartment 8", coords: [41.2230, 69.2140], price: "95,000$" },
-  { id: 9, name: "House 9", coords: [41.2240, 69.2150], price: "110,000$" },
-  { id: 10, name: "Villa 10", coords: [41.2265, 69.2125], price: "175,000$" }
-]
+const store = usePropertyStore()
+const router = useRouter()
+const properties = computed(() => store.properties || [])
 
-// Helper function: distance in km
 function calcDistance(lat1, lon1, lat2, lon2) {
   const R = 6371
   const dLat = (lat2 - lat1) * Math.PI / 180
@@ -47,37 +39,94 @@ function calcDistance(lat1, lon1, lat2, lon2) {
   return (R * c).toFixed(2)
 }
 
+function addMarkers() {
+  if (!map) return
+  if (markerLayer) {
+    markerLayer.clearLayers()
+  } else {
+    markerLayer = L.layerGroup().addTo(map)
+  }
+
+  const markers = []
+
+    properties.value.forEach(p => {
+    const lat = Number(p.lat)
+    const lng = Number(p.lng)
+    if (!lat || !lng) return
+    const m = L.marker([lat, lng])
+    const views = store.viewsInLastDays ? store.viewsInLastDays(p, 7) : (p.views ? p.views.length : 0)
+    const price = p.price || ''
+    const popupId = `open-${p.id}`
+    const popupContent = `
+      <div>
+        <strong>🏠 ${p.title || 'Property'}</strong><br>
+        Price: ${price}<br>
+        Views (7d): ${views}<br>
+        <button id="${popupId}" style="margin-top:8px;padding:6px 10px;cursor:pointer;">Open property</button>
+      </div>`
+    m.bindPopup(popupContent)
+    // when popup opens attach click handler to the button inside the popup
+    m.on('popupopen', () => {
+      const btn = document.getElementById(popupId)
+      if (btn) {
+        btn.onclick = (ev) => {
+          ev.preventDefault()
+          if (p.id) router.push({ path: `/product/${p.id}` })
+        }
+      }
+    })
+    m.addTo(markerLayer)
+    markers.push(m)
+  })
+
+  // If we have markers and user location, fit bounds
+  if (markers.length) {
+    const group = L.featureGroup(markers.concat(userCoords ? [L.circleMarker(userCoords)] : []))
+    try {
+      map.fitBounds(group.getBounds().pad(0.2))
+    } catch (e) {
+      // ignore if fitBounds fails
+    }
+  }
+}
+
 onMounted(() => {
-  map = L.map(mapContainer.value).setView([41.224, 69.210], 16)
+  map = L.map(mapContainer.value).setView([41.224, 69.210], 13)
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
   }).addTo(map)
 
-  // All properties
-  const markers = properties.map(p => {
-    const m = L.marker(p.coords).addTo(map)
-    m.bindPopup(`🏠 ${p.name}<br>Price: ${p.price}`)
-    return m
-  })
+  addMarkers()
 
   // User location
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(pos => {
       userCoords = [pos.coords.latitude, pos.coords.longitude]
       const userMarker = L.circleMarker(userCoords, {
-        radius: 10,
+        radius: 8,
         fillColor: 'red',
         color: 'white',
         weight: 2,
         fillOpacity: 0.9
       }).addTo(map)
-      userMarker.bindPopup("📍 Your Location").openPopup()
+      userMarker.bindPopup("📍 Your Location")
 
-      // Adjust map to show user + all properties
-      const group = L.featureGroup([...markers, userMarker])
-      map.fitBounds(group.getBounds().pad(0.2))
+      // Recalculate bounds with new user marker
+      addMarkers()
     }, err => console.error(err))
+  }
+})
+
+watch(properties, () => {
+  // update markers when properties change
+  addMarkers()
+}, { deep: true })
+
+onBeforeUnmount(() => {
+  if (map) {
+    map.remove()
+    map = null
   }
 })
 

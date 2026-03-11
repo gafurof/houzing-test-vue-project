@@ -11,15 +11,37 @@ export const properties = [
     lat: 41.3186,
     lng: 69.2770,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '150000',
-  price: '120000',
+    oldPrice: '150000',
+    price: '120000',
     images: [
-      "https://cdn.pixabay.com/photo/2017/08/06/22/57/living-room-2607128_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/19/17/50/sofa-1845663_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284696_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/08/01/00/28/sofa-2567521_1280.jpg"
+      "https://picsum.photos/id/1018/1200/800",
+      "https://picsum.photos/id/1019/1200/800",
+      "https://picsum.photos/id/1020/1200/800",
+      "https://picsum.photos/id/1021/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T10:15:00.000Z",
+      "2026-03-10T09:20:00.000Z",
+      "2026-03-09T14:05:00.000Z",
+      "2026-03-08T16:30:00.000Z",
+      "2026-03-07T11:12:00.000Z",
+      "2026-03-06T08:45:00.000Z",
+      "2026-03-05T21:00:00.000Z",
+      "2026-03-04T19:30:00.000Z",
+      "2026-03-03T07:25:00.000Z",
+      "2026-03-02T13:40:00.000Z",
+      "2026-03-01T12:00:00.000Z",
+      "2026-02-27T15:15:00.000Z",
+      "2026-02-25T10:00:00.000Z",
+      "2026-02-22T09:45:00.000Z",
+      "2026-02-20T18:20:00.000Z",
+      "2026-02-18T20:05:00.000Z",
+      "2026-02-16T06:30:00.000Z",
+      "2026-02-14T14:10:00.000Z",
+      "2026-02-12T22:00:00.000Z",
+      "2026-02-10T08:00:00.000Z"
+    ],
     rooms: 2,
     area: 85
   },
@@ -35,15 +57,24 @@ export const properties = [
     lat: 39.6542,
     lng: 66.9597,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '650',
-  price: '500',
+    oldPrice: '650',
+    price: '500',
     images: [
-      "https://cdn.pixabay.com/photo/2015/07/02/10/31/interior-828719_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284696_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/12/living-room-2181942_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/21/15/53/sofa-1846272_1280.jpg"
+      "https://picsum.photos/id/1022/1200/800",
+      "https://picsum.photos/id/1023/1200/800",
+      "https://picsum.photos/id/1024/1200/800",
+      "https://picsum.photos/id/1025/1200/800"
     ]
     ,
+    views: [
+      "2026-03-10T12:00:00.000Z",
+      "2026-03-08T09:30:00.000Z",
+      "2026-03-05T08:00:00.000Z",
+      "2026-02-28T14:00:00.000Z",
+      "2026-02-20T17:45:00.000Z",
+      "2026-02-15T11:10:00.000Z",
+      "2026-02-12T07:50:00.000Z"
+    ],
     rooms: 3,
     area: 120
   },
@@ -59,15 +90,35 @@ export const properties = [
     lat: 41.2900,
     lng: 69.2200,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '90000',
-  price: '80000',
+    oldPrice: '90000',
+    price: '80000',
     images: [
-      "https://cdn.pixabay.com/photo/2017/02/01/19/58/sofa-2037313_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/21/15/50/living-room-1846250_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/13/interior-2181943_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284705_1280.jpg"
+      "https://picsum.photos/id/1026/1200/800",
+      "https://picsum.photos/id/1027/1200/800",
+      "https://picsum.photos/id/1028/1200/800",
+      "https://picsum.photos/id/1029/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T07:30:00.000Z",
+      "2026-03-09T18:20:00.000Z",
+      "2026-03-07T20:00:00.000Z",
+      "2026-03-05T10:10:00.000Z",
+      "2026-03-03T15:45:00.000Z",
+      "2026-03-01T09:00:00.000Z",
+      "2026-02-27T22:30:00.000Z",
+      "2026-02-25T13:15:00.000Z",
+      "2026-02-23T11:05:00.000Z",
+      "2026-02-20T08:50:00.000Z",
+      "2026-02-18T07:40:00.000Z",
+      "2026-02-16T06:20:00.000Z",
+      "2026-02-14T05:10:00.000Z",
+      "2026-02-12T04:00:00.000Z",
+      "2026-02-10T03:30:00.000Z",
+      "2026-02-08T02:15:00.000Z",
+      "2026-02-05T01:00:00.000Z",
+      "2026-02-02T23:50:00.000Z"
+    ],
     rooms: 2,
     area: 75
   },
@@ -83,15 +134,22 @@ export const properties = [
     lat: 41.3050,
     lng: 69.2360,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '400000',
-  price: '350000',
+    oldPrice: '400000',
+    price: '350000',
     images: [
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284700_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/19/17/50/sofa-1845664_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/01/19/59/sofa-2037315_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/12/living-room-2181941_1280.jpg"
+      "https://picsum.photos/id/1030/1200/800",
+      "https://picsum.photos/id/1031/1200/800",
+      "https://picsum.photos/id/1032/1200/800",
+      "https://picsum.photos/id/1033/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T13:00:00.000Z",
+      "2026-03-02T09:30:00.000Z",
+      "2026-02-25T12:15:00.000Z",
+      "2026-02-18T16:45:00.000Z",
+      "2026-02-10T08:20:00.000Z"
+    ],
     rooms: 5,
     area: 300
   },
@@ -107,15 +165,26 @@ export const properties = [
     lat: 41.3275,
     lng: 69.2937,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '350',
-  price: '300',
+    oldPrice: '350',
+    price: '300',
     images: [
-      "https://cdn.pixabay.com/photo/2015/07/02/10/31/interior-828720_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/08/01/00/28/sofa-2567522_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/21/15/53/sofa-1846273_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/13/interior-2181944_1280.jpg"
+      "https://picsum.photos/id/1034/1200/800",
+      "https://picsum.photos/id/1035/1200/800",
+      "https://picsum.photos/id/1036/1200/800",
+      "https://picsum.photos/id/1037/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T06:00:00.000Z",
+      "2026-03-09T17:45:00.000Z",
+      "2026-03-04T08:30:00.000Z",
+      "2026-02-28T20:20:00.000Z",
+      "2026-02-21T11:11:00.000Z",
+      "2026-02-18T10:10:00.000Z",
+      "2026-02-14T09:09:00.000Z",
+      "2026-02-11T08:08:00.000Z",
+      "2026-02-09T07:07:00.000Z"
+    ],
     rooms: 1,
     area: 40
   },
@@ -131,15 +200,20 @@ export const properties = [
     lat: 41.3250,
     lng: 69.2400,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '500',
-  price: '450',
+    oldPrice: '500',
+    price: '450',
     images: [
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284703_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/01/19/58/sofa-2037314_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/19/17/50/sofa-1845665_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/12/living-room-2181940_1280.jpg"
+      "https://picsum.photos/id/1038/1200/800",
+      "https://picsum.photos/id/1039/1200/800",
+      "https://picsum.photos/id/1040/1200/800",
+      "https://picsum.photos/id/1041/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T20:20:00.000Z",
+      "2026-03-07T12:12:00.000Z",
+      "2026-03-01T09:09:00.000Z"
+    ],
     rooms: 3,
     area: 110
   },
@@ -155,15 +229,31 @@ export const properties = [
     lat: 40.9986,
     lng: 71.6724,
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et dicta nisi, inventore officiis natus doloremque debitis omnis soluta dolor cum atque dolorem odio blanditiis minima quisquam...',
-  oldPrice: '70000',
-  price: '60000',
+    oldPrice: '70000',
+    price: '60000',
     images: [
-      "https://cdn.pixabay.com/photo/2017/02/01/19/59/sofa-2037316_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/21/15/50/living-room-1846251_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/03/28/12/13/interior-2181945_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/architecture-1284702_1280.jpg"
+      "https://picsum.photos/id/1042/1200/800",
+      "https://picsum.photos/id/1043/1200/800",
+      "https://picsum.photos/id/1044/1200/800",
+      "https://picsum.photos/id/1045/1200/800"
     ]
     ,
+    views: [
+      "2026-03-11T22:00:00.000Z",
+      "2026-03-10T21:00:00.000Z",
+      "2026-03-08T20:00:00.000Z",
+      "2026-03-06T19:00:00.000Z",
+      "2026-03-04T18:00:00.000Z",
+      "2026-03-02T17:00:00.000Z",
+      "2026-03-01T16:00:00.000Z",
+      "2026-02-27T15:00:00.000Z",
+      "2026-02-25T14:00:00.000Z",
+      "2026-02-23T13:00:00.000Z",
+      "2026-02-21T12:00:00.000Z",
+      "2026-02-19T11:00:00.000Z",
+      "2026-02-17T10:00:00.000Z",
+      "2026-02-15T09:00:00.000Z"
+    ],
     rooms: 2,
     area: 90
   }
@@ -180,12 +270,15 @@ export const properties = [
     lat: 41.2995,
     lng: 69.2401,
     description: 'Yer uchastkasi sotiladi. Quyi narx va yaxshi joylashuv.',
-  oldPrice: '60000',
-  price: '50000',
+    oldPrice: '60000',
+    price: '50000',
     images: [
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1046/1200/800"
     ]
     ,
+    views: [
+      "2026-02-01T08:00:00.000Z"
+    ],
     rooms: 0,
     area: 600
   }

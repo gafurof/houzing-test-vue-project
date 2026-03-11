@@ -249,7 +249,7 @@
 
 
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePropertyStore  } from '@/stores/propertyStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
@@ -261,8 +261,19 @@ const storeProperties = usePropertyStore ()
 const route = useRoute()
 
 const product = computed(() =>
-  storeProperties.properties.find(p => p.id === Number(route.params.id))
+  storeProperties.properties.find(p => Number(p.id) === Number(route.params.id))
 )
+
+// increment views: add a timestamp each time a product page is opened
+onMounted(() => {
+  if (route.params.id) storeProperties.incrementView(Number(route.params.id))
+})
+
+watch(() => route.params.id, (id, oldId) => {
+  if (id && id !== oldId) {
+    storeProperties.incrementView(Number(id))
+  }
+})
 
 const isExpanded = ref(false)
 const favourites = reactive(storeUserInfo.accountStatus.favourites)
