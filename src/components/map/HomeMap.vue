@@ -1,10 +1,12 @@
 <template>
   <v-container class="mb-15">
-    <h2 class="text-center mt-13">Find Properties Near You</h2>
-    <p class="text-center mb-2">Use our interactive map to browse all available properties and discover the best options
-      in your immediate area.</p>
+      <template v-if="props.showHeader">
+        <h2 class="text-center mt-13">Find Properties Near You</h2>
+        <p class="text-center mb-2">Use our interactive map to browse all available properties and discover the best options
+          in your immediate area.</p>
+      </template>
     <v-container>
-      <v-sheet :height="mobile ? 400 : 600" rounded elevation="2" class="position-relative">
+      <v-sheet :height="mobile ? 226 : 500" rounded elevation="2" class="position-relative">
         <div ref="mapContainer" style="height: 100%; width: 100%;"></div>
 
         <v-btn icon="mdi-crosshairs-gps" size="small" color="primary" class="position-absolute"
@@ -27,9 +29,20 @@ let map = null
 let userCoords = null
 let markerLayer = null
 
+const props = defineProps({
+  properties: {
+    type: Array,
+    default: null
+  },
+  showHeader: {
+    type: Boolean,
+    default: true
+  }
+})
+
 const store = usePropertyStore()
 const router = useRouter()
-const properties = computed(() => store.properties || [])
+const properties = computed(() => props.properties ?? store.properties ?? [])
 
 function calcDistance(lat1, lon1, lat2, lon2) {
   const R = 6371
@@ -55,7 +68,8 @@ function addMarkers() {
     const lng = Number(p.lng)
     if (!lat || !lng) return
     const m = L.marker([lat, lng])
-    const views = store.viewsInLastDays ? store.viewsInLastDays(p, 7) : (p.views ? p.views.length : 0)
+  // use the store action to reliably compute views in the last 7 days
+  const views = (typeof store.getViewsInLastDays === 'function') ? store.getViewsInLastDays(p, 7) : (p.views ? p.views.length : 0)
     const price = p.price || ''
     const popupId = `open-${p.id}`
     const imageSrc = (p.images && p.images[0]) || fallbackImg
