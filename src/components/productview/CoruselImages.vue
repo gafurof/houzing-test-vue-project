@@ -3,7 +3,7 @@
     <v-img :src="images[2]" height="195" cover>
       <div class="d-flex align-center justify-center text-white text-h5"
         style="background: rgba(0,0,0,0.5); height:100%;">
-        +15
+        +{{ images.length }} photos
       </div>
     </v-img>
   </v-col>

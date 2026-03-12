@@ -21,22 +21,22 @@
                 <v-col cols="12" md="8" class="d-flex flex-wrap align-center ga-5">
                   <div class="d-flex flex-column align-center text-caption">
                     <v-icon size="18">mdi-bed</v-icon>
-                    <span>4 beds</span>
+                    <span>{{ (product.beds ?? product.rooms ?? 0) + ' beds' }}</span>
                   </div>
 
                   <div class="d-flex flex-column align-center text-caption">
                     <v-icon size="18">mdi-shower</v-icon>
-                    <span>5 baths</span>
+                    <span>{{ (product.baths ?? 0) + ' baths' }}</span>
                   </div>
 
                   <div class="d-flex flex-column align-center text-caption">
                     <v-icon size="18">mdi-car</v-icon>
-                    <span>1 garage</span>
+                    <span>{{ (product.garage ?? 0) + ' garage' }}</span>
                   </div>
 
                   <div class="d-flex flex-column align-center text-caption">
                     <v-icon size="18">mdi-ruler-square</v-icon>
-                    <span>1200 Sq Ft</span>
+                    <span>{{ product.areaSqft || formatArea(product.area) }}</span>
                   </div>
                 </v-col>
 
@@ -101,31 +101,31 @@
                   <strong>Property ID:</strong> {{ product.id }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Badrooms:</strong> 8
+                  <strong>Bedrooms:</strong> {{ product.beds ?? product.rooms ?? 'N/A' }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Property Type:</strong> Apartment
+                  <strong>Property Type:</strong> {{ product.category || 'N/A' }}
                 </v-col>
                 <v-col cols="12" md="4">
                   <strong>Price:</strong> {{ product.price }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Bathrooms:</strong> 6
+                  <strong>Bathrooms:</strong> {{ product.baths ?? 0 }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Property Status:</strong> For sale
+                  <strong>Property Status:</strong> {{ product.type || 'N/A' }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Property Size:</strong> 1.560 Sp Ft
+                  <strong>Property Size:</strong> {{ product.areaSqft || formatArea(product.area) }}
                 </v-col>
                 <v-col cols="12" md="6">
-                  <strong>Garage:</strong> 4
+                  <strong>Garage:</strong> {{ product.garage ?? 0 }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Year Build:</strong> 01.06.2008
+                  <strong>Year Build:</strong> {{ product.yearBuilt || 'N/A' }}
                 </v-col>
                 <v-col cols="12" md="4">
-                  <strong>Garage Size:</strong> 200 Sq Ft
+                  <strong>Garage Size:</strong> {{ product.garageSize || 'N/A' }}
                 </v-col>
               </v-row>
             </v-sheet>
@@ -291,5 +291,13 @@ const likeButton = (id) => {
   } else {
     favourites.push(String(id))
   }
+}
+
+// helper to format area (m2 -> sqft)
+const formatArea = (area) => {
+  const a = Number(area || 0)
+  if (!a) return '0 sq ft'
+  const sqft = Math.round(a * 10.7639)
+  return `${sqft} sq ft`
 }
 </script>
