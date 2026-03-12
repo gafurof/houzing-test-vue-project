@@ -4,7 +4,7 @@
   </v-container>
   <v-expand-x-transition>
     <v-container v-show="!loading">
-      <v-row class="d-flex flex-wrap" justify="start">
+      <v-row v-if="properties && properties.length > 0" class="d-flex flex-wrap" justify="start">
         <v-col v-for="propertie in properties" :key="propertie.title" cols="12" sm="6" md="4" class="d-flex">
           <v-card class="rounded-0 elevation-1" :style="{ width: mdAndUp ? '380px' : '343px' }"
             :class="{ 'ma-5': !mdAndUp }">
@@ -61,6 +61,7 @@
           </v-card>
         </v-col>
       </v-row>
+      <h2 v-else class="text-center my-15 py-15">No properties found.</h2>
     </v-container>
   </v-expand-x-transition>
 
