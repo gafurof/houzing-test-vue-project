@@ -1,9 +1,9 @@
 <template>
   <FilterBar @applyFilters="handleApplyFilters" @updateAddress="handleAddressUpdate" />
 
-  <v-container>
+  <v-container class="pb-0">
     <h2 class="text-center mt-5">Properties</h2>
-    <p class="text-center">
+    <p class="text-center mb-2">
       Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
     </p>
     <div class="d-flex justify-space-between align-center justify-center" style="width: 100%">
