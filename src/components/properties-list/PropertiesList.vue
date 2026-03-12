@@ -25,19 +25,19 @@
             <div class="d-flex align-center justify-space-between pa-3">
               <div class="d-flex flex-column align-center text-caption">
                 <v-icon size="18">mdi-bed</v-icon>
-                <span>4 beds</span>
+                <span>{{ (propertie.beds ?? propertie.rooms ?? 0) + ' beds' }}</span>
               </div>
               <div class="d-flex flex-column align-center text-caption">
                 <v-icon size="18">mdi-shower</v-icon>
-                <span>5 baths</span>
+                <span>{{ (propertie.baths ?? 0) + ' baths' }}</span>
               </div>
               <div class="d-flex flex-column align-center text-caption">
                 <v-icon size="18">mdi-car</v-icon>
-                <span>1 garage</span>
+                <span>{{ (propertie.garage ?? 0) + ' garage' }}</span>
               </div>
               <div class="d-flex flex-column align-center text-caption">
                 <v-icon size="18">mdi-ruler-square</v-icon>
-                <span>1200 Sq Ft</span>
+                <span>{{ propertie.areaSqft || formatArea(propertie.area) }}</span>
               </div>
             </div>
 
@@ -98,5 +98,13 @@ const likeButton = (id) => {
   } else {
     favourites.push(String(id))
   }
+}
+
+// helper to format area (m2 -> sqft) when areaSqft not provided
+const formatArea = (area) => {
+  const a = Number(area || 0)
+  if (!a) return '0 sq ft'
+  const sqft = Math.round(a * 10.7639)
+  return `${sqft} sq ft`
 }
 </script>

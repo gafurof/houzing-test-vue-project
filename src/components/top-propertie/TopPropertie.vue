@@ -10,22 +10,22 @@
 
         <div class="d-flex flex-column align-center text-caption">
           <v-icon size="25">mdi-bed</v-icon>
-          <span style="font-size: 140%;">4 beds</span>
+          <span style="font-size: 140%;">{{ (propertie.beds ?? propertie.rooms ?? 0) + ' beds' }}</span>
         </div>
 
         <div class="d-flex flex-column align-center text-caption">
           <v-icon size="25">mdi-shower</v-icon>
-          <span style="font-size: 140%;">5 baths</span>
+          <span style="font-size: 140%;">{{ (propertie.baths ?? 0) + ' baths' }}</span>
         </div>
 
         <div class="d-flex flex-column align-center text-caption">
           <v-icon size="25">mdi-car</v-icon>
-          <span style="font-size: 140%;">1 garage</span>
+          <span style="font-size: 140%;">{{ (propertie.garage ?? 0) + ' garage' }}</span>
         </div>
 
         <div class="d-flex flex-column align-center text-caption">
           <v-icon size="25">mdi-ruler-square</v-icon>
-          <span style="font-size: 140%;">1200 Sq Ft</span>
+          <span style="font-size: 140%;">{{ propertie.areaSqft || formatArea(propertie.area) }}</span>
         </div>
 
       </div>
@@ -47,6 +47,14 @@ import defaultImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 
 const store = usePropertyStore()
 const propertie = ref(store.properties[0])
+
+// helper to format area (m2 -> sqft)
+const formatArea = (area) => {
+  const a = Number(area || 0)
+  if (!a) return '0 sq ft'
+  const sqft = Math.round(a * 10.7639)
+  return `${sqft} sq ft`
+}
 
 </script>
 

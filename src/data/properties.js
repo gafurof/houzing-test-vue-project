@@ -14,10 +14,10 @@ export const properties = [
     oldPrice: '150000',
     price: '120000',
     images: [
-      "https://images.unsplash.com/photo-1560185127-6b8d9b9f0f3c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506312-4c8f8b5f1c90?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1003/1200/800",
+      "https://picsum.photos/id/1016/1200/800",
+      "https://picsum.photos/id/1015/1200/800",
+      "https://picsum.photos/id/1027/1200/800"
     ]
     ,
     views: [
@@ -25,25 +25,13 @@ export const properties = [
       "2026-03-10T09:20:00.000Z",
       "2026-03-09T14:05:00.000Z",
       "2026-03-08T16:30:00.000Z",
-      "2026-03-07T11:12:00.000Z",
-      "2026-03-06T08:45:00.000Z",
-      "2026-03-05T21:00:00.000Z",
-      "2026-03-04T19:30:00.000Z",
-      "2026-03-03T07:25:00.000Z",
-      "2026-03-02T13:40:00.000Z",
-      "2026-03-01T12:00:00.000Z",
-      "2026-02-27T15:15:00.000Z",
-      "2026-02-25T10:00:00.000Z",
-      "2026-02-22T09:45:00.000Z",
-      "2026-02-20T18:20:00.000Z",
-      "2026-02-18T20:05:00.000Z",
-      "2026-02-16T06:30:00.000Z",
-      "2026-02-14T14:10:00.000Z",
-      "2026-02-12T22:00:00.000Z",
-      "2026-02-10T08:00:00.000Z"
     ],
     rooms: 2,
-    area: 85
+    beds: 2,
+    baths: 1,
+    garage: 0,
+    area: 85,
+    areaSqft: '915 sq ft'
   },
   {
     id: 2,
@@ -60,10 +48,10 @@ export const properties = [
     oldPrice: '650',
     price: '500',
     images: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1031/1200/800",
+      "https://picsum.photos/id/1020/1200/800",
+      "https://picsum.photos/id/1024/1200/800",
+      "https://picsum.photos/id/1035/1200/800"
     ]
     ,
     views: [
@@ -73,10 +61,22 @@ export const properties = [
       "2026-02-28T14:00:00.000Z",
       "2026-02-20T17:45:00.000Z",
       "2026-02-15T11:10:00.000Z",
-      "2026-02-12T07:50:00.000Z"
+      "2026-02-12T07:50:00.000Z",
+      "2026-02-25T10:00:00.000Z",
+      "2026-02-22T09:45:00.000Z",
+      "2026-02-20T18:20:00.000Z",
+      "2026-02-18T20:05:00.000Z",
+      "2026-02-16T06:30:00.000Z",
+      "2026-02-14T14:10:00.000Z",
+      "2026-02-12T22:00:00.000Z",
+      "2026-02-10T08:00:00.000Z"
     ],
     rooms: 3,
-    area: 120
+    beds: 3,
+    baths: 2,
+    garage: 1,
+    area: 120,
+    areaSqft: '1292 sq ft'
   },
   {
     id: 3,
@@ -93,10 +93,10 @@ export const properties = [
     oldPrice: '90000',
     price: '80000',
     images: [
-      "https://images.unsplash.com/photo-1549187774-b4e9b0445b56?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506312-4c8f8b5f1c90?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1012/1200/800",
+      "https://picsum.photos/id/1013/1200/800",
+      "https://picsum.photos/id/1005/1200/800",
+      "https://picsum.photos/id/1006/1200/800"
     ]
     ,
     views: [
@@ -120,7 +120,11 @@ export const properties = [
       "2026-02-02T23:50:00.000Z"
     ],
     rooms: 2,
-    area: 75
+    beds: 2,
+    baths: 1,
+    garage: 0,
+    area: 75,
+    areaSqft: '807 sq ft'
   },
   {
     id: 4,
@@ -137,10 +141,10 @@ export const properties = [
     oldPrice: '400000',
     price: '350000',
     images: [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1533777324565-a040eb52fac2?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1001/1200/800",
+      "https://picsum.photos/id/1014/1200/800",
+      "https://picsum.photos/id/1043/1200/800",
+      "https://picsum.photos/id/1050/1200/800"
     ]
     ,
     views: [
@@ -151,7 +155,11 @@ export const properties = [
       "2026-02-10T08:20:00.000Z"
     ],
     rooms: 5,
-    area: 300
+    beds: 5,
+    baths: 3,
+    garage: 1,
+    area: 300,
+    areaSqft: '3229 sq ft'
   },
   {
     id: 5,
@@ -168,10 +176,10 @@ export const properties = [
     oldPrice: '350',
     price: '300',
     images: [
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1021/1200/800",
+      "https://picsum.photos/id/1022/1200/800",
+      "https://picsum.photos/id/1023/1200/800",
+      "https://picsum.photos/id/1026/1200/800"
     ]
     ,
     views: [
@@ -186,7 +194,11 @@ export const properties = [
       "2026-02-09T07:07:00.000Z"
     ],
     rooms: 1,
-    area: 40
+    beds: 1,
+    baths: 1,
+    garage: 0,
+    area: 40,
+    areaSqft: '431 sq ft'
   },
   {
     id: 6,
@@ -203,10 +215,10 @@ export const properties = [
     oldPrice: '500',
     price: '450',
     images: [
-      "https://images.unsplash.com/photo-1505692794401-3a2c3b6eea2f?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1036/1200/800",
+      "https://picsum.photos/id/1037/1200/800",
+      "https://picsum.photos/id/1038/1200/800",
+      "https://picsum.photos/id/1039/1200/800"
     ]
     ,
     views: [
@@ -215,7 +227,11 @@ export const properties = [
       "2026-03-01T09:09:00.000Z"
     ],
     rooms: 3,
-    area: 110
+    beds: 3,
+    baths: 2,
+    garage: 1,
+    area: 110,
+    areaSqft: '1184 sq ft'
   },
   {
     id: 7,
@@ -232,10 +248,10 @@ export const properties = [
     oldPrice: '70000',
     price: '60000',
     images: [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1560185127-6b8d9b9f0f3c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1549187774-b4e9b0445b56?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1040/1200/800",
+      "https://picsum.photos/id/1041/1200/800",
+      "https://picsum.photos/id/1042/1200/800",
+      "https://picsum.photos/id/1044/1200/800"
     ]
     ,
     views: [
@@ -255,7 +271,11 @@ export const properties = [
       "2026-02-15T09:00:00.000Z"
     ],
     rooms: 2,
-    area: 90
+    beds: 2,
+    baths: 1,
+    garage: 0,
+    area: 90,
+    areaSqft: '969 sq ft'
   }
   ,
   {
@@ -273,13 +293,17 @@ export const properties = [
     oldPrice: '60000',
     price: '50000',
     images: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
+      "https://picsum.photos/id/1045/1200/800"
     ]
     ,
     views: [
       "2026-02-01T08:00:00.000Z"
     ],
     rooms: 0,
-    area: 600
+    beds: 0,
+    baths: 0,
+    garage: 0,
+    area: 600,
+    areaSqft: '6458 sq ft'
   }
 ];
