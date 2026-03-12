@@ -35,6 +35,9 @@
                 required :rules="[requiredRule]"></v-select>
             </v-col>
             <v-col cols="12" sm="4">
+              <v-text-field v-model.number="form.price" variant="underlined" label="Price" clearable :rules="[numericRule]"></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="4">
               <v-text-field v-model="form.label" variant="underlined" label="Label" clearable :rules="[requiredRule]"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4">
@@ -97,25 +100,6 @@
 
       <v-col cols="12" sm="12">
         <v-card title="Media" rounded="0">
-          <v-row class="px-5">
-            <v-card-text class="pa-3">Featured Images</v-card-text>
-            <v-col cols="12">
-              <v-btn color="primary" prepend-icon="mdi-upload" @click="fileInput.click()">
-                Upload Images
-              </v-btn>
-
-              <input type="file" multiple accept="image/*" ref="fileInput" class="d-none"
-                @change="handleFiles($event.target.files)" />
-            </v-col>
-
-            <v-col cols="12">
-              <v-row>
-                <v-col v-for="(img, index) in images" :key="index" cols="6" sm="4" md="3">
-                  <v-img width="150" aspect-ratio="1" :src="img" cover rounded="lg" />
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
           <v-row class="px-5">
             <v-card-text class="pa-3">Gallery</v-card-text>
             <v-col cols="12">
@@ -292,6 +276,7 @@ const form = reactive({
   lng: 69.2401,
   energyClass: '',
   energyIndex: null,
+  price: 80000,
 })
 
 const categoryItems = categories.map(c => ({ title: c.value.charAt(0).toUpperCase() + c.value.slice(1), value: c.id }))
@@ -307,6 +292,14 @@ const handleFiles = (files) => {
   }
 }
 
+const FIREBASE_URL = 'https://houzing-demo-default-rtdb.firebaseio.com/properties.json'
+
+const formatAreaSqft = (m2) => {
+  const a = Number(m2 || 0)
+  if (!a) return '0 sq ft'
+  return `${Math.round(a * 10.7639)} sq ft`
+}
+
 function buildPropertyObject() {
   // generate new id
   const maxId = store.properties.reduce((max, p) => Math.max(max, Number(p.id)), 0)
@@ -316,7 +309,7 @@ function buildPropertyObject() {
 
   const isRent = form.status && form.status.toLowerCase().includes('rent')
 
-  const price = isRent ? 300 : 80000
+  const price = (form.price != null && form.price !== '') ? Number(form.price) : (isRent ? 300 : 80000)
   const oldPrice = isRent ? Math.round(price * 1.1) : Math.round(price * 1.05)
 
   const imgs = images.length ? images.slice() : [ (categoryObj && categoryObj.img) || 'https://via.placeholder.com/1200x800']
@@ -337,7 +330,13 @@ function buildPropertyObject() {
     price: String(price),
     images: imgs,
     rooms: Number(form.rooms) || 1,
-    area: Number(form.area) || 50
+    beds: Number(form.beds) || Number(form.rooms) || 1,
+    baths: Number(form.baths) || 1,
+    garage: Number(form.garages) || 0,
+    area: Number(form.area) || 50,
+    areaSqft: formatAreaSqft(Number(form.area) || 50),
+    yearBuilt: form.yearBuild || null,
+    garageSize: null
   }
 }
 
@@ -353,13 +352,15 @@ async function onSubmit() {
 
   loading.value = true
   const newProp = buildPropertyObject()
-  // push to store
-  store.properties.push(newProp)
 
-  // small delay to simulate server
-  setTimeout(() => {
+  try {
+    await store.saveProperty(newProp)
+  } catch (err) {
+    console.error('saveProperty failed, fallback to local push', err)
+    store.properties.push(newProp)
+  } finally {
     loading.value = false
     router.push('/properties')
-  }, 800)
+  }
 }
 </script>

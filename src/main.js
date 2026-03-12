@@ -30,3 +30,5 @@ app.use(pinia)
 registerPlugins(app)
 
 app.mount('#app')
+// Note: remote sync is opt-in. To enable remote loading set `store.remoteSync = true`
+// and then call `store.loadProperties()` from a user action or admin panel.

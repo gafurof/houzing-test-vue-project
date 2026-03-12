@@ -1,6 +1,6 @@
 <template>
   <v-container class="mb-15">
-      <template v-if="props.showHeader">
+      <template v-if="showHeader">
         <h2 class="text-center mt-13">Find Properties Near You</h2>
         <p class="text-center mb-2">Use our interactive map to browse all available properties and discover the best options
           in your immediate area.</p>
