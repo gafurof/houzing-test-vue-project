@@ -25,13 +25,11 @@ const store = usePropertyStore()
 
 const topProperty = computed(() => {
   if (!store.properties || !store.properties.length) return null
-  // compute views in last 7 days for each property using the store getter
   const withCounts = store.properties.map(p => ({
     prop: p,
-    views: store.viewsInLastDays(p, 7)
+    views: store.getViewsInLastDays(p, 7)
   }))
   withCounts.sort((a, b) => b.views - a.views)
-  // if top has 0 views, still return first property as fallback
   return withCounts[0] ? withCounts[0].prop : null
 })
 
@@ -44,7 +42,7 @@ const topImage = computed(() => {
 const titleText = computed(() => {
   const p = topProperty.value
   if (!p) return "This week's most popular home"
-  return `${p.title} — viewed ${store.viewsInLastDays(p, 7)} times this week`
+  return `${p.title} — viewed ${store.getViewsInLastDays(p, 7)} times this week`
 })
 
 function openTopProperty() {
