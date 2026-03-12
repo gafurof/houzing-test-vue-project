@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="dialog" max-width="920">
     <template #activator="{ props: activatorProps }">
-      <v-btn block variant="outlined" size="large" rounded="0" color="#E6E9EC" v-bind="activatorProps">
+      <v-btn block  size="large" rounded="0" color="primary" v-bind="activatorProps">
         <template #prepend>
-          <v-icon color="primary">mdi-tune-variant</v-icon>
+          <v-icon>mdi-tune-variant</v-icon>
         </template>
-        <span style="color: black">Advanced</span>
+        <span >Advanced</span>
       </v-btn>
     </template>
 
