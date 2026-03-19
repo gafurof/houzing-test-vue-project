@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { usePropertyStore } from '@/stores/propertyStore'
 import FilterBar from '@/components/filter-bar/FilterBar.vue';
 import PropertiesList from '@/components/properties-list/PropertiesList.vue';
@@ -36,7 +36,12 @@ import { useRoute } from 'vue-router'
 const store = usePropertyStore()
 const route = useRoute()
 
-const filteredProperties = ref(store.properties)
+onMounted(() => {
+  store.loadProperties()
+})
+const filteredProperties = computed(() => {
+  return store.properties.reverse()
+})
 const viewMode = ref('list')
 
 const activeFilters = ref({})

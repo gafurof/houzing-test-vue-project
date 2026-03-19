@@ -249,55 +249,70 @@
 
 
 <script setup>
-import { ref, computed, reactive, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { usePropertyStore  } from '@/stores/propertyStore'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { usePropertyStore } from '@/stores/propertyStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import ImagesProductView from '../components/productview/ImagesProductView.vue'
 import TheMap from '../components/map/TheMap.vue'
 
+// Stores
 const storeUserInfo = useUserInfoStore()
-const storeProperties = usePropertyStore ()
+const storeProperties = usePropertyStore()
+
+// Router / Route
 const route = useRoute()
+const router = useRouter()
 
-const product = computed(() =>
-  storeProperties.properties.find(p => Number(p.id) === Number(route.params.id))
-)
-
-// increment views: add a timestamp each time a product page is opened
-onMounted(() => {
-  if (route.params.id) storeProperties.incrementView(Number(route.params.id))
-})
-
-watch(() => route.params.id, (id, oldId) => {
-  if (id && id !== oldId) {
-    storeProperties.incrementView(Number(id))
-  }
-})
-
+// Reactive states
 const isExpanded = ref(false)
 const favourites = reactive(storeUserInfo.accountStatus.favourites)
+
+// Computed: product from store
+const product = computed(() => {
+  if (!route.params.id) return null
+  if (typeof storeProperties.getById !== 'function') return null
+  return storeProperties.getById(route.params.id)
+})
+
+// Short description for product
 const shortText = computed(() => {
   if (!product.value?.description) return ''
   return product.value.description.slice(0, 200) + '...'
 })
 
+// Like / Favourite toggle
 const likeButton = (id) => {
-  if (favourites.includes(String(id))) {
-    const index = favourites.indexOf(String(id))
-    if (index > -1) {
-      favourites.splice(index, 1)
-    }
+  const strId = String(id)
+  const idx = favourites.indexOf(strId)
+  if (idx > -1) {
+    favourites.splice(idx, 1)
   } else {
-    favourites.push(String(id))
+    favourites.push(strId)
   }
 }
 
-// helper to format area (m2 -> sqft)
+// Area formatting
 const formatArea = (area) => {
   const a = Number(area || 0)
   if (!a) return '0 sq ft'
   const sqft = Math.round(a * 10.7639)
   return `${sqft} sq ft`
 }
+
+// Lifecycle: load properties from API and increment views
+onMounted(async () => {
+  await storeProperties.loadProperties()
+  if (route.params.id) {
+    storeProperties.incrementView(Number(route.params.id))
+  }
+})
+
+// Watch for route change
+watch(() => route.params.id, (id, oldId) => {
+  if (id && id !== oldId) {
+    storeProperties.incrementView(Number(id))
+  }
+})
+
 </script>

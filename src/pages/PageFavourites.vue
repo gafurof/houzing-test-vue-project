@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { usePropertyStore } from '@/stores/propertyStore'
 import PropertiesList from '@/components/properties-list/PropertiesList.vue'
@@ -17,8 +17,10 @@ import PropertiesList from '@/components/properties-list/PropertiesList.vue'
 const storeUserInfo = useUserInfoStore()
 const storeProperties = usePropertyStore()
 
+onMounted(() => {
+  storeProperties.loadProperties()
+})
 const properties = computed(() => {
-  console.log(storeProperties.properties)
   return storeProperties.properties.filter(property =>
     storeUserInfo.accountStatus.favourites.includes(String(property.id))
   )

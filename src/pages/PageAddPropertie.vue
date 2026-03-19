@@ -219,7 +219,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref,  } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import TheMap from '@/components/map/TheMap.vue';
@@ -232,7 +232,6 @@ const fileInput = ref(null)
 const loading = ref(false)
 const formRef = ref(null)
 
-// validation rules
 const requiredRule = (v) => {
   return (v !== null && v !== undefined && String(v).trim() !== '') || 'This field is required'
 }
@@ -245,7 +244,6 @@ const numericRuleAllowZero = (v) => {
   return (!isNaN(Number(v)) && Number(v) >= 0) || 'Must be a number'
 }
 
-// form state
 import { reactive } from 'vue'
 import { usePropertyStore } from '@/stores/propertyStore'
 import { categories } from '@/data/categories'
@@ -292,8 +290,6 @@ const handleFiles = (files) => {
   }
 }
 
-const FIREBASE_URL = 'https://houzing-demo-default-rtdb.firebaseio.com/properties.json'
-
 const formatAreaSqft = (m2) => {
   const a = Number(m2 || 0)
   if (!a) return '0 sq ft'
@@ -301,51 +297,49 @@ const formatAreaSqft = (m2) => {
 }
 
 function buildPropertyObject() {
-  // generate new id
   const maxId = store.properties.reduce((max, p) => Math.max(max, Number(p.id)), 0)
   const newId = maxId + 1
 
   const categoryObj = categories.find(c => c.id === form.category)
 
-  const isRent = form.status && form.status.toLowerCase().includes('rent')
+  const isRent = form.status.toLowerCase().includes('rent')
 
-  const price = (form.price != null && form.price !== '') ? Number(form.price) : (isRent ? 300 : 80000)
+  const price = Number(form.price || (isRent ? 300 : 80000))
   const oldPrice = isRent ? Math.round(price * 1.1) : Math.round(price * 1.05)
 
-  const imgs = images.length ? images.slice() : [ (categoryObj && categoryObj.img) || 'https://via.placeholder.com/1200x800']
+  const imgs = images.value.length
+    ? images.value.slice()
+    : [(categoryObj?.img || 'https://via.placeholder.com/1200x800')]
 
   return {
     id: newId,
     type: isRent ? 'for rent' : 'for sale',
     category: form.category,
-    title: form.title && form.title.trim() !== '' ? form.title : `${categoryObj ? categoryObj.title : 'Property'} #${newId}`,
-    dataPublished: new Date().toISOString().slice(0,10),
-    address: form.address || form.mapLocation || `${form.city}`,
-    city: form.city || 'Tashkent',
+    title: form.title || `${categoryObj?.title || 'Property'} #${newId}`,
+    dataPublished: new Date().toISOString().slice(0, 10),
+    address: form.address,
+    city: form.city,
     country: 'Uzbekistan',
-    lat: Number(form.lat) || 41.2995,
-    lng: Number(form.lng) || 69.2401,
-    description: form.description || 'No description provided.',
+    lat: Number(form.lat),
+    lng: Number(form.lng),
+    description: form.description,
     oldPrice: String(oldPrice),
     price: String(price),
     images: imgs,
-    rooms: Number(form.rooms) || 1,
-    beds: Number(form.beds) || Number(form.rooms) || 1,
-    baths: Number(form.baths) || 1,
-    garage: Number(form.garages) || 0,
-    area: Number(form.area) || 50,
-    areaSqft: formatAreaSqft(Number(form.area) || 50),
-    yearBuilt: form.yearBuild || null,
-    garageSize: null
+    rooms: Number(form.rooms),
+    beds: Number(form.beds),
+    baths: Number(form.baths),
+    garage: Number(form.garages),
+    area: Number(form.area),
+    areaSqft: formatAreaSqft(form.area),
+    yearBuilt: form.yearBuild || null
   }
 }
 
 async function onSubmit() {
-  // validate form (Vuetify v-form)
   if (formRef.value) {
     const valid = await formRef.value.validate()
     if (!valid) {
-      // don't submit if invalid
       return
     }
   }

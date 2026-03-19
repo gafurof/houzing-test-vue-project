@@ -8,10 +8,17 @@
 </template>
 
 <script setup>
-import { usePropertyStore  } from '@/stores/propertyStore'
 import SlideGropProperites from '../slide-grop/SlideGropProperites.vue'
+import { usePropertyStore } from '@/stores/propertyStore'
+import { computed, onMounted } from 'vue'
 
+const store = usePropertyStore()
 
-const store = usePropertyStore ()
-const topProperties = store.properties.slice(0, 5)
+onMounted(() => {
+  store.loadProperties()
+})
+
+const topProperties = computed(() => {
+  return store.properties.slice(1, 6)
+})
 </script>

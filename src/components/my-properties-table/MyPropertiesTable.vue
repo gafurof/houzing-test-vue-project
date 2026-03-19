@@ -55,7 +55,7 @@
 import { ref, computed } from 'vue'
 import fallbackImg from '@/assets/unsplash_2gDwlIim3Uw.png'
 import { useUserInfoStore } from '@/stores/userInfoStore'
-import { properties } from '@/data/properties'
+import { usePropertyStore } from '@/stores/propertyStore'
 
 const props = defineProps({
   search: { type: String, default: '' }
@@ -64,7 +64,7 @@ const props = defineProps({
 const store = useUserInfoStore()
 
 const listings = ref(
-  properties.filter(property =>
+  usePropertyStore.loadProperties.filter(property =>
     store.accountStatus.myProperties.includes(String(property.id))
   )
 )
